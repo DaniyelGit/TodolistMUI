@@ -32,4 +32,4 @@ export const todolistReducer = (state: initialStateType = initialState, action: 
     }
 }
 
-export const selectTodolistState = (store: rootStoreType) => store.todolist;
+export const selectStateTodolist = (store: rootStoreType) => store.todolist;
