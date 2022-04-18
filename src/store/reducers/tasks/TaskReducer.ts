@@ -11,7 +11,7 @@ const initialState: initialStateTaskType = {};
 
 export const TaskReducer = (state: initialStateTaskType = initialState, action: ActionsTypeTask): initialStateTaskType => {
     switch (action.type) {
-        case'ADD_TASK': {
+        case 'ADD_TASK': {
             return {
                 ...state,
                 [action.todoID]: [
@@ -19,6 +19,12 @@ export const TaskReducer = (state: initialStateTaskType = initialState, action: 
                     ...state[action.todoID]
                 ]
             };
+        }
+        case 'REMOVE_TASK': {
+            return {
+                ...state,
+                [action.todoID]: state[action.todoID].filter(t => t.id !== action.taskID)
+            }
         }
         case 'CHANGE_TASK_TITLE': {
             return {

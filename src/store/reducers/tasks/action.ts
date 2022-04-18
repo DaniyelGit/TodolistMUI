@@ -8,6 +8,14 @@ export const addTaskAC = (todoID: string, title: string): addTaskType => {
     } as const
 }
 
+export const removeTaskAC = (todoID: string, taskID: string): removeTaskType => {
+    return {
+        type: 'REMOVE_TASK',
+        todoID,
+        taskID,
+    } as const
+}
+
 export const changeTitleTaskAC = (todoID: string, taskID: string, title: string): changeTitleTaskType => {
     return {
         type: 'CHANGE_TASK_TITLE',
@@ -23,7 +31,7 @@ export const changeIsDoneTaskAC = (todoID: string, taskID: string, isDone: boole
         todoID,
         taskID,
         isDone,
-    }
+    } as const
 }
 
 
@@ -44,10 +52,16 @@ type changeIsDoneTaskType = {
     taskID: string
     isDone: boolean
 }
+type removeTaskType = {
+    type: 'REMOVE_TASK'
+    todoID: string
+    taskID: string
+}
 
 // Global TYPE for actions TaskReducer
 export type ActionsTypeTask = addTodolistType
     | removeTodolistType
     | addTaskType
     | changeTitleTaskType
-    | changeIsDoneTaskType;
+    | changeIsDoneTaskType
+    | removeTaskType;
