@@ -1,11 +1,11 @@
-import {initialStateType, todolistReducer} from "./TodolistReducer";
+import {initialStateTodolistType, TodolistReducer} from "./TodolistReducer";
 import {addTodolistAC, changeFilterTodolistAC, changeTitleTodolistAC, removeTodolistAC} from "./action";
 
 
-let state: initialStateType = [];
+let state: initialStateTodolistType = [];
 
-const todolistID_1 = 'todolistID_1';
-const todolistID_2 = 'todolistID_2';
+export const todolistID_1 = 'todolistID_1';
+export const todolistID_2 = 'todolistID_2';
 
 beforeEach(() => {
     state = [
@@ -17,7 +17,7 @@ beforeEach(() => {
 test('correct todolist should be added', () => {
     const title = 'Films';
     const action = addTodolistAC(title);
-    const endState = todolistReducer(state, action);
+    const endState = TodolistReducer(state, action);
 
     expect(endState.length).toBe(3);
     expect(endState[0].title).toBe('Films');
@@ -26,7 +26,7 @@ test('correct todolist should be added', () => {
 
 test('correct todolist should be removed', () => {
     const action = removeTodolistAC(todolistID_2);
-    const endState = todolistReducer(state, action);
+    const endState = TodolistReducer(state, action);
 
     expect(endState.length).toBe(1);
     expect(endState[0].id).toBe(todolistID_1);
@@ -36,7 +36,7 @@ test('correct todolist should be removed', () => {
 test('correct title should be changes', () => {
     const newTitle = 'TestTitle';
     const action = changeTitleTodolistAC(todolistID_1, newTitle);
-    const endState = todolistReducer(state, action);
+    const endState = TodolistReducer(state, action);
 
     expect(endState.length).toBe(2);
     expect(endState[1].title).toBe('Books');
@@ -46,7 +46,7 @@ test('correct title should be changes', () => {
 
 test('correct filter todolist should be changed', () => {
     const action = changeFilterTodolistAC(todolistID_2, 'active');
-    const endState = todolistReducer(state, action);
+    const endState = TodolistReducer(state, action);
 
     expect(endState[0].filter).toBe('all');
     expect(endState[1].filter).toBe('active');

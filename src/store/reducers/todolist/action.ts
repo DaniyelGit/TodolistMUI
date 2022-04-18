@@ -1,30 +1,24 @@
 import {filterType} from "./TodolistReducer";
-
-export enum ACTIONS_TYPE_TODOLIST {
-    ADD_TODOLIST = 'ADD_TODOLIST',
-    REMOVE_TODOLIST = 'REMOVE_TODOLIST',
-    CHANGE_TITLE_TODOLIST = 'CHANGE_TITLE_TODOLIST',
-    CHANGE_FILTER_TODOLIST = 'CHANGE_FILTER_TODOLIST',
-}
-
+import {v1} from "uuid";
 
 export const addTodolistAC = (title: string): addTodolistType => {
     return {
-        type: ACTIONS_TYPE_TODOLIST.ADD_TODOLIST,
+        type: 'ADD_TODOLIST',
         title,
+        todoID: v1(),
     } as const
 }
 
 export const removeTodolistAC = (todoID: string): removeTodolistType => {
     return {
-        type: ACTIONS_TYPE_TODOLIST.REMOVE_TODOLIST,
+        type: 'REMOVE_TODOLIST',
         todoID,
     } as const
 }
 
 export const changeTitleTodolistAC = (todoID: string, newTitle: string): changeTitleTodolistType => {
     return {
-        type: ACTIONS_TYPE_TODOLIST.CHANGE_TITLE_TODOLIST,
+        type: 'CHANGE_TITLE_TODOLIST',
         todoID,
         newTitle,
     } as const
@@ -32,28 +26,29 @@ export const changeTitleTodolistAC = (todoID: string, newTitle: string): changeT
 
 export const changeFilterTodolistAC = (todoID: string, valueFilter: filterType): changeFilterTodolistType => {
     return {
-        type: ACTIONS_TYPE_TODOLIST.CHANGE_FILTER_TODOLIST,
+        type: 'CHANGE_FILTER_TODOLIST',
         todoID,
         valueFilter,
     } as const
 }
 
 
-type addTodolistType = {
-    type: ACTIONS_TYPE_TODOLIST.ADD_TODOLIST
+export type addTodolistType = {
+    type: 'ADD_TODOLIST'
     title: string
+    todoID: string
 }
-type removeTodolistType = {
-    type: ACTIONS_TYPE_TODOLIST.REMOVE_TODOLIST,
+export type removeTodolistType = {
+    type: 'REMOVE_TODOLIST',
     todoID: string,
 }
-type changeTitleTodolistType = {
-    type: ACTIONS_TYPE_TODOLIST.CHANGE_TITLE_TODOLIST,
+export type changeTitleTodolistType = {
+    type: 'CHANGE_TITLE_TODOLIST',
     todoID: string,
     newTitle: string,
 }
-type changeFilterTodolistType = {
-    type: ACTIONS_TYPE_TODOLIST.CHANGE_FILTER_TODOLIST,
+export type changeFilterTodolistType = {
+    type: 'CHANGE_FILTER_TODOLIST',
     todoID: string,
     valueFilter: filterType,
 }
