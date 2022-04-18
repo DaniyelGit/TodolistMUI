@@ -1,6 +1,6 @@
 import {initialStateTaskType, TaskReducer} from "./TaskReducer";
 import {todolistID_1, todolistID_2} from "../todolist/TodolistReducer.test";
-import {addTaskAC} from "./action";
+import {addTaskAC, changeIsDoneTaskAC, changeTitleTaskAC} from "./action";
 import {addTodolistAC, removeTodolistAC} from "../todolist/action";
 
 let state: initialStateTaskType = {};
@@ -54,5 +54,27 @@ test('correct todolist should be remove', () => {
     const keys = Object.keys(endState);
 
     expect(keys.length).toBe(1);
+    expect(endState[todolistID_1].length).toBe(4);
+});
+
+test('correct title task should be changed', () => {
+    const testTitle = 'Мастер и Маргарита';
+    const action = changeTitleTaskAC(todolistID_2, '3', testTitle);
+    const endState = TaskReducer(state, action);
+
+    expect(endState[todolistID_2][2].title).toBe(testTitle);
+    expect(endState[todolistID_2][1].title).toBe('Куджо');
+    expect(endState[todolistID_1][1].title).toBe('Хлеб');
+    expect(endState[todolistID_2].length).toBe(4);
+    expect(endState[todolistID_1].length).toBe(4);
+})
+
+test('correct isDone task should be changed', () => {
+    const action = changeIsDoneTaskAC(todolistID_2, '3', false);
+    const endState = TaskReducer(state, action);
+
+    expect(endState[todolistID_2][2].isDone).toBe(false);
+    expect(endState[todolistID_2][2].title).toBe('Гари Поттер');
+    expect(endState[todolistID_2].length).toBe(4);
     expect(endState[todolistID_1].length).toBe(4);
 })
