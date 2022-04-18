@@ -1,7 +1,7 @@
 import {initialStateTaskType, TaskReducer} from "./TaskReducer";
-import {todolistID_1, todolistID_2} from "../todolist/TodolistReducer.test";
+import {todolistID_1, todolistID_2} from "../TodolistReducer/TodolistReducer.test";
 import {addTaskAC, changeIsDoneTaskAC, changeTitleTaskAC, removeTaskAC} from "./action";
-import {addTodolistAC, removeTodolistAC} from "../todolist/action";
+import {addTodolistAC, removeTodolistAC} from "../TodolistReducer/action";
 
 let state: initialStateTaskType = {};
 
@@ -41,7 +41,7 @@ test('correct task should be removed', () => {
     expect(endState[todolistID_2][2].id).toBe('4');
 })
 
-test('correct todolist should be added', () => {
+test('correct TodolistReducer should be added', () => {
     const title = 'new Todolist';
     const action = addTodolistAC(title);
     const endState = TaskReducer(state, action);
@@ -57,7 +57,7 @@ test('correct todolist should be added', () => {
 
 });
 
-test('correct todolist should be remove', () => {
+test('correct TodolistReducer should be remove', () => {
     const action = removeTodolistAC(todolistID_2);
     const endState = TaskReducer(state, action);
     const keys = Object.keys(endState);

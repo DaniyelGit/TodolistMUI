@@ -1,10 +1,9 @@
-import {initialStateTodolistType, TodolistReducer} from "../todolist/TodolistReducer";
-import {initialStateTaskType, TaskReducer} from "../tasks/TaskReducer";
-import {addTodolistAC, removeTodolistAC} from "../todolist/action";
-import {todolistID_1, todolistID_2} from "../todolist/TodolistReducer.test";
-import exp from "constants";
+import {initialStateTodolistType, TodolistReducer} from "../TodolistReducer/TodolistReducer";
+import {initialStateTaskType, TaskReducer} from "../TaskReducer/TaskReducer";
+import {addTodolistAC, removeTodolistAC} from "../TodolistReducer/action";
+import {todolistID_1, todolistID_2} from "../TodolistReducer/TodolistReducer.test";
 
-test('correct todolist should be added in state task and todolist', () => {
+test('correct TodolistReducer should be added in state task and TodolistReducer', () => {
     const startStateTodolist: initialStateTodolistType = [];
     const startStateTask: initialStateTaskType = {};
 
@@ -24,7 +23,7 @@ test('correct todolist should be added in state task and todolist', () => {
     expect(endStateTask[taskID]).toEqual([]);
 })
 
-test('correct todolist should be removed in state task and todolist', () => {
+test('correct TodolistReducer should be removed in state task and TodolistReducer', () => {
     const stateTodolist: initialStateTodolistType = [
         {id: todolistID_1, title: 'Products', filter: 'all'},
         {id: todolistID_2, title: 'Books', filter: 'all'},

@@ -1,7 +1,7 @@
 import {combineReducers, createStore} from "redux";
 
-import {TodolistReducer} from "./reducers/todolist/TodolistReducer";
-import {TaskReducer} from "./reducers/tasks/TaskReducer";
+import {TodolistReducer} from "./reducers/TodolistReducer/TodolistReducer";
+import {TaskReducer} from "./reducers/TaskReducer/TaskReducer";
 
 
 
