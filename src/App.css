@@ -1,0 +1,10 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+.addItemForm {
+    display: flex;
+    align-items: center;
+}
