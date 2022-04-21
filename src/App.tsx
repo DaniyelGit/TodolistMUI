@@ -24,8 +24,6 @@ const App: React.FC = () => {
     }
 
 
-
-
     return (
         <div className="App">
             <Header/>
@@ -38,9 +36,9 @@ const App: React.FC = () => {
                         todolist
                         && todolist.map(tl => {
                             return (
-                                <Grid item>
+                                <Grid item key={`${tl.id}_${tl.title}`}>
                                     <Paper style={{padding: '10px'}}>
-                                        <Todolist key={`${tl.id}_${tl.title}`}/>
+                                        <Todolist />
                                     </Paper>
                                 </Grid>
                             )
