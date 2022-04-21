@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, KeyboardEvent} from 'react';
 import {Button, IconButton, TextField} from "@mui/material";
 import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 
@@ -13,24 +13,37 @@ export const AddItemForm = (props: AddItemFormType) => {
     } = props
 
     const [title, setTitle] = React.useState<string>('');
+    const [error, setError] = React.useState<boolean>(false);
 
     const onChangeTitle = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value);
+        setError(false);
     }
 
     const addTodolistHandler = () => {
-        addTodolist(title);
-        setTitle('');
+        if (title.trim() !== '') {
+            addTodolist(title.trim());
+            setTitle('');
+        }
+        else {
+            setError(true)
+        }
+    }
+
+    const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') addTodolistHandler();
     }
 
     return (
         <div className={'addItemForm'}>
-            <TextField id="filled-basic"
+            <TextField id={'standard-error'}
+                       error={error}
                        variant="outlined"
                        size={'small'}
-                       label={'Заголовок'}
+                       label={error ? 'Введите заголовок' : 'Заголовок'}
                        value={title}
                        onChange={onChangeTitle}
+                       onKeyPress={onKeyPressHandler}
             />
 
             <IconButton aria-label="addCircle"
