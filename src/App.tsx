@@ -1,5 +1,6 @@
 import React from 'react';
-import './App.css';
+import './App.module.css';
+import s from './App.module.css';
 
 import {Header} from "./components/Header/Header";
 import {AddItemForm} from "./components/AddItemForm/AddItemForm";
@@ -23,7 +24,6 @@ const App: React.FC = () => {
         dispatch(addTodolistAC(title));
     }
 
-
     return (
         <div className="App">
             <Header/>
@@ -31,6 +31,7 @@ const App: React.FC = () => {
                 <Grid container style={{padding: '20px 0'}}>
                     <AddItemForm addTodolist={addTodolist}/>
                 </Grid>
+                <div className={s.line}/>
                 <Grid container spacing={3}>
                     {
                         todolist

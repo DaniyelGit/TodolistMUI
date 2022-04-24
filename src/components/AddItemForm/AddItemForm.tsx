@@ -1,5 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react';
-import {Button, IconButton, TextField} from "@mui/material";
+import s from './AddItemForm.module.css';
+
+import {IconButton, TextField} from "@mui/material";
 import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 
 type AddItemFormType = {
@@ -35,7 +37,7 @@ export const AddItemForm = (props: AddItemFormType) => {
     }
 
     return (
-        <div className={'addItemForm'}>
+        <div className={s.addItemForm}>
             <TextField id={'standard-error'}
                        error={error}
                        variant="outlined"
