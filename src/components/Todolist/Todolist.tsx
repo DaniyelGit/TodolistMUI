@@ -16,6 +16,7 @@ import {AddItemForm} from "../AddItemForm/AddItemForm";
 import {addTaskAC, changeIsDoneTaskAC, changeTitleTaskAC, removeTaskAC} from "../../store/reducers/TaskReducer/action";
 import {Delete} from "@mui/icons-material";
 import {filterType} from "../../store/reducers/TodolistReducer/TodolistReducer";
+import {ButtonsForFilter} from "../ButtonsForFilter/ButtonsForFilter";
 
 
 type TodolistType = {
@@ -54,7 +55,7 @@ export const Todolist = (props: TodolistType) => {
     const onChangeTodolistTitleHandler = (value: string) => {
         dispatch(changeTitleTodolistAC(todoID, value));
     }
-    const onChangeFilterHandler = (filter: filterType) => {
+    const onChangeFilter = (filter: filterType) => {
         dispatch(changeFilterTodolistAC(todoID, filter));
     }
 
@@ -87,7 +88,7 @@ export const Todolist = (props: TodolistType) => {
                    {
                        filteredTasks.map(t => {
                            return (
-                               <li key={t.id}>
+                               <li key={t.id} className={`${t.isDone ? s.completedTask : ''}`}>
                                    <Checkbox
                                        onChange={(e) => onChangeIsDoneTaskHandler(e, t.id)}
                                        checked={t.isDone}
@@ -96,6 +97,7 @@ export const Todolist = (props: TodolistType) => {
                                    />
                                    <EditSpan title={t.title}
                                              changeTitle={(value) => onChangeTaskTitle(t.id, value)}
+                                             removeTaskHandler={() => removeTaskHandler(t.id)}
                                    />
                                    <IconButton onClick={() => removeTaskHandler(t.id)}
                                                size={'small'}
@@ -110,20 +112,7 @@ export const Todolist = (props: TodolistType) => {
                </ul>
 
             <Grid container justifyContent={'space-between'} style={{marginTop: '40px'}}>
-                <Button variant={'contained'}
-                        size={'small'}
-                        onClick={() => onChangeFilterHandler('all')}
-                >all</Button>
-                <Button variant={'contained'}
-                        size={'small'}
-                        color={'error'}
-                        onClick={() => onChangeFilterHandler('active')}
-                >active</Button>
-                <Button variant={'contained'}
-                        size={'small'}
-                        color={'success'}
-                        onClick={() => onChangeFilterHandler('completed')}
-                >completed</Button>
+                <ButtonsForFilter onChangeFilter={onChangeFilter}/>
             </Grid>
         </div>
     );

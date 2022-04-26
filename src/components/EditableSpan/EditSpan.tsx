@@ -5,6 +5,7 @@ import {TextField} from "@mui/material";
 type EditSpanType = {
     title: string
     changeTitle: (value: string) => void
+    removeTaskHandler?: () => void
 }
 
 export const EditSpan = (props: EditSpanType) => {
@@ -12,6 +13,7 @@ export const EditSpan = (props: EditSpanType) => {
     const {
         title,
         changeTitle,
+        removeTaskHandler,
     } = props;
 
     const [edit, setEdit] = React.useState<boolean>(false);
@@ -22,8 +24,13 @@ export const EditSpan = (props: EditSpanType) => {
     }
 
     const onBlur = () => {
-        changeTitle(value);
-        setEdit(false)
+        if (value === '') {
+            removeTaskHandler && removeTaskHandler();
+        }
+        else {
+            changeTitle(value);
+            setEdit(false)
+        }
     }
 
     const onKeyEnter = (e: KeyboardEvent<HTMLInputElement>) => {
