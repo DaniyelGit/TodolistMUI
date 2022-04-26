@@ -44,6 +44,7 @@ const App = () => {
                                         <Todolist
                                             todoID={tl.id}
                                             todoTitle={tl.title}
+                                            filter={tl.filter}
                                         />
                                     </Paper>
                                 </Grid>

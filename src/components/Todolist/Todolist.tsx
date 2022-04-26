@@ -7,15 +7,21 @@ import {Dispatch} from "redux";
 import {EditSpan} from "../EditableSpan/EditSpan";
 import {Button, Checkbox, Grid, IconButton, TextField} from "@mui/material";
 import PlaylistRemoveOutlinedIcon from '@mui/icons-material/PlaylistRemove';
-import {changeTitleTodolistAC, removeTodolistAC} from "../../store/reducers/TodolistReducer/action";
+import {
+    changeFilterTodolistAC,
+    changeTitleTodolistAC,
+    removeTodolistAC
+} from "../../store/reducers/TodolistReducer/action";
 import {AddItemForm} from "../AddItemForm/AddItemForm";
 import {addTaskAC, changeIsDoneTaskAC, changeTitleTaskAC, removeTaskAC} from "../../store/reducers/TaskReducer/action";
 import {Delete} from "@mui/icons-material";
+import {filterType} from "../../store/reducers/TodolistReducer/TodolistReducer";
 
 
 type TodolistType = {
     todoID: string,
     todoTitle: string
+    filter: filterType
 }
 
 export const Todolist = (props: TodolistType) => {
@@ -23,6 +29,7 @@ export const Todolist = (props: TodolistType) => {
     const {
         todoID,
         todoTitle,
+        filter,
     } = props;
 
     const tasks = useSelector<rootStoreType, initialStateTaskType>(state => state.task);
@@ -47,7 +54,17 @@ export const Todolist = (props: TodolistType) => {
     const onChangeTodolistTitleHandler = (value: string) => {
         dispatch(changeTitleTodolistAC(todoID, value));
     }
+    const onChangeFilterHandler = (filter: filterType) => {
+        dispatch(changeFilterTodolistAC(todoID, filter));
+    }
 
+    let filteredTasks = tasks[todoID];
+    if (filter === 'active') {
+        filteredTasks = filteredTasks.filter(t => !t.isDone);
+    }
+    if (filter === 'completed') {
+        filteredTasks = filteredTasks.filter(t => t.isDone);
+    }
 
 
     return (
@@ -68,9 +85,9 @@ export const Todolist = (props: TodolistType) => {
 
                <ul className={s.listTasks}>
                    {
-                       tasks[todoID].map(t => {
+                       filteredTasks.map(t => {
                            return (
-                               <li>
+                               <li key={t.id}>
                                    <Checkbox
                                        onChange={(e) => onChangeIsDoneTaskHandler(e, t.id)}
                                        checked={t.isDone}
@@ -91,6 +108,23 @@ export const Todolist = (props: TodolistType) => {
                        })
                    }
                </ul>
+
+            <Grid container justifyContent={'space-between'} style={{marginTop: '40px'}}>
+                <Button variant={'contained'}
+                        size={'small'}
+                        onClick={() => onChangeFilterHandler('all')}
+                >all</Button>
+                <Button variant={'contained'}
+                        size={'small'}
+                        color={'error'}
+                        onClick={() => onChangeFilterHandler('active')}
+                >active</Button>
+                <Button variant={'contained'}
+                        size={'small'}
+                        color={'success'}
+                        onClick={() => onChangeFilterHandler('completed')}
+                >completed</Button>
+            </Grid>
         </div>
     );
 };
