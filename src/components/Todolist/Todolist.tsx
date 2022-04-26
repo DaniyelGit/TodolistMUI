@@ -5,7 +5,7 @@ import {rootStoreType} from "../../store/state";
 import {initialStateTaskType} from "../../store/reducers/TaskReducer/TaskReducer";
 import {Dispatch} from "redux";
 import {EditSpan} from "../EditableSpan/EditSpan";
-import {Button, Checkbox, Grid, IconButton, TextField} from "@mui/material";
+import {Grid, IconButton, TextField} from "@mui/material";
 import PlaylistRemoveOutlinedIcon from '@mui/icons-material/PlaylistRemove';
 import {
     changeFilterTodolistAC,
@@ -14,10 +14,9 @@ import {
 } from "../../store/reducers/TodolistReducer/action";
 import {AddItemForm} from "../AddItemForm/AddItemForm";
 import {addTaskAC, changeIsDoneTaskAC, changeTitleTaskAC, removeTaskAC} from "../../store/reducers/TaskReducer/action";
-import {Delete} from "@mui/icons-material";
 import {filterType} from "../../store/reducers/TodolistReducer/TodolistReducer";
 import {ButtonsForFilter} from "../ButtonsForFilter/ButtonsForFilter";
-
+import {Tasks} from "../Tasks/Tasks";
 
 type TodolistType = {
     todoID: string,
@@ -71,7 +70,7 @@ export const Todolist = (props: TodolistType) => {
     return (
         <div className={s.todolist}>
             <Grid container alignItems={'center'}>
-                <EditSpan title={todoTitle} changeTitle={onChangeTodolistTitleHandler}/>
+                <EditSpan title={todoTitle} changeTitle={onChangeTodolistTitleHandler} removeItemHandler={removeTodolistHandler}/>
                 <IconButton size={'small'}
                             style={{marginLeft: '20px', backgroundColor: 'none'}}
                             onClick={removeTodolistHandler}
@@ -84,32 +83,13 @@ export const Todolist = (props: TodolistType) => {
                 <AddItemForm addItem={addTaskHandler}/>
             </Grid>
 
-               <ul className={s.listTasks}>
-                   {
-                       filteredTasks.map(t => {
-                           return (
-                               <li key={t.id} className={`${t.isDone ? s.completedTask : ''}`}>
-                                   <Checkbox
-                                       onChange={(e) => onChangeIsDoneTaskHandler(e, t.id)}
-                                       checked={t.isDone}
-                                       color="primary"
-                                       style={{padding: '0 10px 0 0'}}
-                                   />
-                                   <EditSpan title={t.title}
-                                             changeTitle={(value) => onChangeTaskTitle(t.id, value)}
-                                             removeTaskHandler={() => removeTaskHandler(t.id)}
-                                   />
-                                   <IconButton onClick={() => removeTaskHandler(t.id)}
-                                               size={'small'}
-                                               style={{marginLeft: 'auto'}}
-                                   >
-                                       <Delete color={'error'}/>
-                                   </IconButton>
-                               </li>
-                           )
-                       })
-                   }
-               </ul>
+            <ul className={s.listTasks}>
+                <Tasks tasks={filteredTasks}
+                       onChangeIsDoneTaskHandler={onChangeIsDoneTaskHandler}
+                       onChangeTaskTitle={onChangeTaskTitle}
+                       removeTaskHandler={removeTaskHandler}
+                />
+            </ul>
 
             <Grid container justifyContent={'space-between'} style={{marginTop: '40px'}}>
                 <ButtonsForFilter onChangeFilter={onChangeFilter}/>
