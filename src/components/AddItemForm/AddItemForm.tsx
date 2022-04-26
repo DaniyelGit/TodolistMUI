@@ -5,13 +5,13 @@ import {IconButton, TextField} from "@mui/material";
 import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 
 type AddItemFormType = {
-    addTodolist: (title: string) => void
+    addItem: (title: string) => void
 }
 
 export const AddItemForm = (props: AddItemFormType) => {
 
     const {
-        addTodolist,
+        addItem,
     } = props
 
     const [title, setTitle] = React.useState<string>('');
@@ -24,7 +24,7 @@ export const AddItemForm = (props: AddItemFormType) => {
 
     const addTodolistHandler = () => {
         if (title.trim() !== '') {
-            addTodolist(title.trim());
+            addItem(title.trim());
             setTitle('');
         }
         else {

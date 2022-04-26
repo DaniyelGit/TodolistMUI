@@ -12,7 +12,9 @@ import {addTodolistAC} from "./store/reducers/TodolistReducer/action";
 import {Dispatch} from "redux";
 
 
-const App: React.FC = () => {
+
+
+const App = () => {
 
     const {
         todolist,
@@ -29,7 +31,7 @@ const App: React.FC = () => {
             <Header/>
             <Container fixed>
                 <Grid container style={{padding: '20px 0'}}>
-                    <AddItemForm addTodolist={addTodolist}/>
+                    <AddItemForm addItem={addTodolist}/>
                 </Grid>
                 <div className={s.line}/>
                 <Grid container spacing={3}>
@@ -39,7 +41,10 @@ const App: React.FC = () => {
                             return (
                                 <Grid item key={`${tl.id}_${tl.title}`}>
                                     <Paper style={{padding: '10px'}}>
-                                        <Todolist />
+                                        <Todolist
+                                            todoID={tl.id}
+                                            todoTitle={tl.title}
+                                        />
                                     </Paper>
                                 </Grid>
                             )
