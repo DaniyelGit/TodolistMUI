@@ -1,4 +1,4 @@
-import {ActionsTypeTodolist} from "./action";
+import {ActionsTypeTodolist} from "./actionsForTodolist";
 import {rootStoreType} from "../../state";
 
 

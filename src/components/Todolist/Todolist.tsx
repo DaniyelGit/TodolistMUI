@@ -11,9 +11,9 @@ import {
     changeFilterTodolistAC,
     changeTitleTodolistAC,
     removeTodolistAC
-} from "../../store/reducers/TodolistReducer/action";
+} from "../../store/reducers/TodolistReducer/actionsForTodolist";
 import {AddItemForm} from "../AddItemForm/AddItemForm";
-import {addTaskAC, changeIsDoneTaskAC, changeTitleTaskAC, removeTaskAC} from "../../store/reducers/TaskReducer/action";
+import {addTaskAC, changeIsDoneTaskAC, changeTitleTaskAC, removeTaskAC} from "../../store/reducers/TaskReducer/actionsForTasks";
 import {filterType} from "../../store/reducers/TodolistReducer/TodolistReducer";
 import {ButtonsForFilter} from "../ButtonsForFilter/ButtonsForFilter";
 import {Tasks} from "../Tasks/Tasks";

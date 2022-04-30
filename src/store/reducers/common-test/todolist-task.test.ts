@@ -1,6 +1,6 @@
 import {initialStateTodolistType, TodolistReducer} from "../TodolistReducer/TodolistReducer";
 import {initialStateTaskType, TaskReducer} from "../TaskReducer/TaskReducer";
-import {addTodolistAC, removeTodolistAC} from "../TodolistReducer/action";
+import {addTodolistAC, removeTodolistAC} from "../TodolistReducer/actionsForTodolist";
 import {todolistID_1, todolistID_2} from "../TodolistReducer/TodolistReducer.test";
 
 test('correct TodolistReducer should be added in state task and TodolistReducer', () => {

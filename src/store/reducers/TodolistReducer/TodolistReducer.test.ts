@@ -1,5 +1,5 @@
 import {initialStateTodolistType, TodolistReducer} from "./TodolistReducer";
-import {addTodolistAC, changeFilterTodolistAC, changeTitleTodolistAC, removeTodolistAC} from "./action";
+import {addTodolistAC, changeFilterTodolistAC, changeTitleTodolistAC, removeTodolistAC} from "./actionsForTodolist";
 
 
 let state: initialStateTodolistType = {

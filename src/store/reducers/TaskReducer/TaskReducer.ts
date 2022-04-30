@@ -1,6 +1,6 @@
 import {rootStoreType} from "../../state";
 import {v1} from "uuid";
-import {ActionsTypeTask} from "./action";
+import {ActionsTypeTask} from "./actionsForTasks";
 
 export type TaskType = { id: string, title: string, isDone: boolean };
 

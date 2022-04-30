@@ -1,7 +1,7 @@
 import {initialStateTaskType, TaskReducer} from "./TaskReducer";
 import {todolistID_1, todolistID_2} from "../TodolistReducer/TodolistReducer.test";
-import {addTaskAC, changeIsDoneTaskAC, changeTitleTaskAC, removeTaskAC} from "./action";
-import {addTodolistAC, removeTodolistAC} from "../TodolistReducer/action";
+import {addTaskAC, changeIsDoneTaskAC, changeTitleTaskAC, removeTaskAC} from "./actionsForTasks";
+import {addTodolistAC, removeTodolistAC} from "../TodolistReducer/actionsForTodolist";
 
 let state: initialStateTaskType = {};
 

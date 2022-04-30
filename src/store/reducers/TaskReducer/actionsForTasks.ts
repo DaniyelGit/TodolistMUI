@@ -1,4 +1,4 @@
-import {addTodolistType, removeTodolistType} from "../TodolistReducer/action";
+import {addTodolistType, removeTodolistType} from "../TodolistReducer/actionsForTodolist";
 
 export const addTaskAC = (todoID: string, title: string): addTaskType => {
     return  {

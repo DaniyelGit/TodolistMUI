@@ -8,7 +8,7 @@ import {Container, Grid, Paper} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {selectStateTodolist} from "./store/reducers/TodolistReducer/TodolistReducer";
 import {Todolist} from "./components/Todolist/Todolist";
-import {addTodolistAC} from "./store/reducers/TodolistReducer/action";
+import {addTodolistAC} from "./store/reducers/TodolistReducer/actionsForTodolist";
 import {Dispatch} from "redux";
 
 
