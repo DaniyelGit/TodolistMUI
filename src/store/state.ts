@@ -15,4 +15,6 @@ export const rootStore = combineReducers({
 export const state = createStore(rootStore);
 
 // @ts-ignore
-window.store = state;
+const store = window.store = state;
+
+console.log(store.getState())

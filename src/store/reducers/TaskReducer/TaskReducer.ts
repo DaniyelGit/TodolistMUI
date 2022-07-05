@@ -57,4 +57,4 @@ export const TaskReducer = (state: initialStateTaskType = initialState, action: 
 
 
 
-// export const selectStateTask = (store: rootStoreType) => store.task;
+export const selectStateTask = (store: rootStoreType) => store.task;

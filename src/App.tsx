@@ -16,9 +16,7 @@ import {Dispatch} from "redux";
 
 const App = () => {
 
-    const {
-        todolist,
-    } = useSelector(selectStateTodolist)
+    const todolist = useSelector(selectStateTodolist)
 
     const dispatch = useDispatch<Dispatch>();
 
@@ -30,7 +28,7 @@ const App = () => {
         <div className="App">
             <Header/>
             <Container fixed>
-                <Grid container style={{padding: '20px 0'}}>
+                <Grid style={{padding: '20px 0'}}>
                     <AddItemForm addItem={addTodolist}/>
                 </Grid>
                 <div className={s.line}/>

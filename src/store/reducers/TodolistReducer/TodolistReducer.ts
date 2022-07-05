@@ -2,9 +2,8 @@ import {ActionsTypeTodolist} from "./actionsForTodolist";
 import {rootStoreType} from "../../state";
 
 
-export type initialStateTodolistType = {
-    todolist: todolistType[];
-};
+export type initialStateTodolistType = todolistType[];
+
 type todolistType = {
     id: string
     title: string
@@ -12,35 +11,22 @@ type todolistType = {
 };
 export type filterType = 'all' | 'active' | 'completed';
 
-const initialState: initialStateTodolistType = {
-    todolist: []
-};
+const initialState: initialStateTodolistType = []
+
 
 export const TodolistReducer = (state: initialStateTodolistType = initialState, action: ActionsTypeTodolist): initialStateTodolistType => {
     switch (action.type) {
         case 'ADD_TODOLIST': {
-            return {
-                ...state,
-                todolist: [{id: action.todoID, title: action.title, filter: 'all'}, ...state.todolist]
-            };
+            return [{id: action.todoID, title: action.title, filter: 'all'}, ...state];
         }
         case 'REMOVE_TODOLIST': {
-            return {
-                ...state,
-                todolist: state.todolist.filter(tl => tl.id !== action.todoID)
-            };
+            return state.filter(tl => tl.id !== action.todoID);
         }
         case 'CHANGE_TITLE_TODOLIST': {
-            return {
-                ...state,
-                todolist: state.todolist.map(tl => tl.id === action.todoID ? {...tl, title: action.newTitle} : tl)
-            }
+            return state.map(tl => tl.id === action.todoID ? {...tl, title: action.newTitle} : tl);
         }
         case 'CHANGE_FILTER_TODOLIST': {
-            return {
-                ...state,
-                todolist: state.todolist.map(tl => tl.id === action.todoID ? {...tl, filter: action.valueFilter} : tl)
-            };
+            return state.map(tl => tl.id === action.todoID ? {...tl, filter: action.valueFilter} : tl);
         }
         default: {
             return state

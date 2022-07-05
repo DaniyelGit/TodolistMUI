@@ -4,9 +4,7 @@ import {addTodolistAC, removeTodolistAC} from "../TodolistReducer/actionsForTodo
 import {todolistID_1, todolistID_2} from "../TodolistReducer/TodolistReducer.test";
 
 test('correct TodolistReducer should be added in state task and TodolistReducer', () => {
-    const startStateTodolist: initialStateTodolistType = {
-        todolist: []
-    };
+    const startStateTodolist: initialStateTodolistType = []
     const startStateTask: initialStateTaskType = {};
 
     const action = addTodolistAC('new Todolist');
@@ -16,22 +14,21 @@ test('correct TodolistReducer should be added in state task and TodolistReducer'
 
     const keys = Object.keys(endStateTask);
     const taskID = keys[0];
-    const todoID = endStateTodolist.todolist[0].id;
+    const todoID = endStateTodolist[0].id;
 
     expect(taskID).toBe(todoID);
     expect(taskID).toBe(action.todoID);
     expect(todoID).toBe(action.todoID);
-    expect(endStateTodolist.todolist[0].title).toBe('new Todolist')
+    expect(endStateTodolist[0].title).toBe('new Todolist')
     expect(endStateTask[taskID]).toEqual([]);
 })
 
 test('correct TodolistReducer should be removed in state task and TodolistReducer', () => {
-    const stateTodolist: initialStateTodolistType = {
-        todolist: [
+    const stateTodolist: initialStateTodolistType = [
             {id: todolistID_1, title: 'Products', filter: 'all'},
             {id: todolistID_2, title: 'Books', filter: 'all'},
-        ],
-    }
+        ]
+
     const stateTask: initialStateTaskType = {
         [todolistID_1]: [
             {id: '1', title: 'Молоко', isDone: false},
@@ -55,8 +52,8 @@ test('correct TodolistReducer should be removed in state task and TodolistReduce
     const arrKeys = Object.keys(endStateTask);
     const currencyKey = arrKeys[0];
 
-    expect(endStateTodolist.todolist.length).toBe(1);
-    expect(endStateTodolist.todolist[0].id).toEqual(todolistID_1);
+    expect(endStateTodolist.length).toBe(1);
+    expect(endStateTodolist[0].id).toEqual(todolistID_1);
 
     expect(arrKeys.length).toBe(1);
     expect(endStateTask[currencyKey].length).toBe(4);

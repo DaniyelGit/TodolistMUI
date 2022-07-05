@@ -41,7 +41,7 @@ test('correct task should be removed', () => {
     expect(endState[todolistID_2][2].id).toBe('4');
 })
 
-test('correct TodolistReducer should be added', () => {
+test('correct Todolist should be added', () => {
     const title = 'new Todolist';
     const action = addTodolistAC(title);
     const endState = TaskReducer(state, action);
@@ -57,7 +57,7 @@ test('correct TodolistReducer should be added', () => {
 
 });
 
-test('correct TodolistReducer should be remove', () => {
+test('correct Todolist should be remove', () => {
     const action = removeTodolistAC(todolistID_2);
     const endState = TaskReducer(state, action);
     const keys = Object.keys(endState);

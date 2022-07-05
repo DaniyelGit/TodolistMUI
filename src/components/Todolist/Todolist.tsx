@@ -2,7 +2,7 @@ import React, {ChangeEvent} from 'react';
 import s from './Todolist.module.css';
 import {useDispatch, useSelector} from "react-redux";
 import {rootStoreType} from "../../store/state";
-import {initialStateTaskType} from "../../store/reducers/TaskReducer/TaskReducer";
+import {initialStateTaskType, selectStateTask} from "../../store/reducers/TaskReducer/TaskReducer";
 import {Dispatch} from "redux";
 import {EditSpan} from "../EditableSpan/EditSpan";
 import {Grid, IconButton, TextField} from "@mui/material";
@@ -32,7 +32,8 @@ export const Todolist = (props: TodolistType) => {
         filter,
     } = props;
 
-    const tasks = useSelector<rootStoreType, initialStateTaskType>(state => state.task);
+    // const tasks = useSelector<rootStoreType, initialStateTaskType>(state => state.task);
+    const tasks = useSelector(selectStateTask);
     const dispatch = useDispatch<Dispatch>();
 
     const removeTodolistHandler = () => {
