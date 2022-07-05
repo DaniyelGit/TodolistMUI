@@ -32,7 +32,6 @@ export const Todolist = (props: TodolistType) => {
         filter,
     } = props;
 
-    // const tasks = useSelector<rootStoreType, initialStateTaskType>(state => state.task);
     const tasks = useSelector(selectStateTask);
     const dispatch = useDispatch<Dispatch>();
 
